@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    let rock: String = "🗿"
+    let paper: String = "🧻"
+    let scissors: String = "✂️"
+    
     var body: some View {
         VStack {
             Image(systemName: "globe")
