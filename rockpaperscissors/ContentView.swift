@@ -8,21 +8,60 @@
 import SwiftUI
 
 struct ContentView: View {
-    let rock: String = "🗿"
-    let paper: String = "🧻"
-    let scissors: String = "✂️"
+    let options = ["🗿", "🧻", "✂️"]
+    
+    @State private var currentChoice = Int.random(in: 0...2)
+    @State private var shouldWin: Bool = Bool.random()
     
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-            Text("\(rock)")
-            Text("\(paper)")
-            Text("\(scissors)")
+        NavigationStack {
+                Form {
+                    Section("The game chose") {
+                        Text(options[currentChoice])
+                    }
+                    Section("You need to") {
+                        shouldWin ? Text("Win") : Text("Lose")
+                    }
+                    Section("What do you choose?") {
+                        
+                        ForEach(options, id: \.self) {
+                            answer in
+                            Button {
+                                userChoice(answer)
+                            } label: {
+                                Text("\(answer)")
+                            }
+                        }
+                        
+//                        Picker("Make your selection:", selection: $currentChoice) {
+//                            ForEach(options, id: \.self) {
+//                                Text("\($0)")
+//                            }
+//                            
+//                    }
+//                        .pickerStyle(.segmented)
+                    }
+                }
+                .navigationTitle("RawkPaperScissors")
         }
         .padding()
+    }
+    
+    func userChoice(_ answer: String) {
+        // if you need to win
+        if shouldWin {
+            // and you win
+        } else if shouldWin {
+            // and you lose
+        } else {
+            // you draw
+        }
+        
+        // if you need to lose
+        
+        // if you chose a draw
+        
+        return
     }
 }
 
