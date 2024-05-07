@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    let newArray = [Image(systemName: "scissors"), Image(systemName: "doc"), Image(systemName: "cloud")]
     let options = ["🗿", "🧻", "✂️"]
     
     @State private var currentChoice = Int.random(in: 0...2)
     @State private var shouldWin: Bool = Bool.random()
     
+    @State private var userScore = 0
+    @State private var rounds = 0
+    
     var body: some View {
         NavigationStack {
-                Form {
+                VStack {
                     Section("The game chose") {
                         Text(options[currentChoice])
                     }
@@ -27,42 +31,54 @@ struct ContentView: View {
                         ForEach(options, id: \.self) {
                             answer in
                             Button {
-                                userChoice(answer)
+                                convertUserChoice(answer)
                             } label: {
                                 Text("\(answer)")
                             }
                         }
                         
-//                        Picker("Make your selection:", selection: $currentChoice) {
-//                            ForEach(options, id: \.self) {
-//                                Text("\($0)")
-//                            }
-//                            
-//                    }
-//                        .pickerStyle(.segmented)
                     }
+                    Text("Your score is \(userScore) out of \(rounds) rounds")
                 }
                 .navigationTitle("RawkPaperScissors")
         }
         .padding()
     }
     
-    func userChoice(_ answer: String) {
-        // if you need to win
-        if shouldWin {
-            // and you win
-        } else if shouldWin {
-            // and you lose
-        } else {
-            // you draw
-        }
-        
-        // if you need to lose
-        
-        // if you chose a draw
-        
-        return
+    func convertUserChoice(_ answer: String) -> Int {
+//        var selectedIndex: Int
+//        for option in options {
+//            if option == answer {
+//                selectedIndex = options.index(after: answer)
+//                        }
+//                    }
+//        return selectedIndex
+        return 0
     }
+    
+//    func evaluateUserChoice(_ answer: Int) {
+//        // if you need to win
+//        // Can this be condensed to ternary?
+//        if shouldWin {
+//            // and you win
+//            if answer > currentChoice {
+//                userScore += 1
+//            }
+//            // and you lose
+//            // and you draw
+//        } else {
+//            // and you win
+//            // and you lose
+//            // and you draw
+//        }
+//        
+//        // if you need to lose
+//        
+//        // if you chose a draw
+//        shouldWin.toggle()
+//        rounds += 1
+//        return
+//    }
 }
 
 #Preview {
